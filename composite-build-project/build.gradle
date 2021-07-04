@@ -1,0 +1,37 @@
+buildscript {
+    ext.kotlin_version = "1.5.10"
+
+    repositories {
+        google()
+        mavenCentral()
+        jcenter()
+    }
+
+    dependencies {
+        classpath "com.android.tools.build:gradle:4.2.1"
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+    }
+}
+
+plugins {
+    // plugins {} 默认的行为是解析和应用插件
+    // 引入 version-plugin 插件，apply false 表示不应用此插件
+    id 'tech.daking.version.plugin' apply false
+}
+
+allprojects {
+    repositories {
+        google()
+        mavenCentral()
+        jcenter()
+    }
+}
+
+subprojects { subproject ->
+    // version-plugin 应用到各子项目
+    apply plugin: 'tech.daking.version.plugin'
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}

@@ -1,0 +1,4 @@
+rootProject.name = "composite-build-project"
+include ':app'
+// version-plugin 参与构建
+includeBuild '../version-plugin'
